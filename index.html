@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LinkStudio | QR코드 생성 및 URL 단축 통합 솔루션</title>
+  <meta name="description" content="QR코드 생성과 URL 단축을 하나의 웹 앱에서 빠르고 스마트하게 사용하세요.">
+  
+  <!-- Google Fonts & Font Awesome -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- 인터랙티브 글로우 배경 조명 -->
+  <div class="bg-glow"></div>
+
+  <!-- 상단 네비게이션 -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-brand">
+        <i class="fa-solid fa-bolt-lightning brand-icon"></i>
+        <span>LinkStudio</span>
+      </a>
+      <div class="nav-menu">
+        <a href="index.html" class="nav-link active"><i class="fa-solid fa-house"></i> 홈</a>
+        <a href="url2qr/index.html" class="nav-link"><i class="fa-solid fa-qrcode"></i> QR코드</a>
+        <a href="urlShort/index.html" class="nav-link"><i class="fa-solid fa-link"></i> URL단축</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 메인 히어로 섹션 -->
+  <main class="hero-section">
+    <div class="hero-container">
+      <div class="hero-badge">
+        <span class="pulse-dot"></span> All-in-One Link Platform
+      </div>
+      <h1 class="hero-title">
+        더 스마트한 링크 관리,<br>
+        <span class="gradient-text">QR코드</span> & <span class="gradient-text-alt">URL 단축</span> 솔루션
+      </h1>
+      <p class="hero-subtitle">
+        복잡하고 긴 링크를 한눈에 들어오는 짧은 주소로 줄이고,<br>
+        언제 어디서나 스캔 가능한 고해상도 QR코드로 손쉽게 변환해 보세요.
+      </p>
+
+      <!-- 핵심 메뉴 카드 (QR코드 버튼 & URL단축 버튼) -->
+      <div class="service-cards-grid">
+        
+        <!-- 서비스 1: QR코드 생성기 연결 카드 & 버튼 -->
+        <div class="service-card glass-card" id="card-qr">
+          <div class="card-icon-wrapper qr-accent">
+            <i class="fa-solid fa-qrcode"></i>
+          </div>
+          <h2 class="card-title">QR코드 생성기</h2>
+          <p class="card-desc">
+            웹사이트 URL을 고화질 QR코드로 실시간 변환하고 JPG 및 PNG 이미지로 다운로드합니다.
+          </p>
+          <ul class="card-features">
+            <li><i class="fa-solid fa-check"></i> 실시간 QR코드 렌더링</li>
+            <li><i class="fa-solid fa-check"></i> 고해상도 이미지 파일 저장</li>
+            <li><i class="fa-solid fa-check"></i> 원클릭 다운로드 기능</li>
+          </ul>
+          <!-- 요구사항 2: [url2qr] 폴더 index.html 연결 버튼 -->
+          <a href="url2qr/index.html" class="btn btn-qr" id="btn-goto-qr">
+            <span>QR코드</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+
+        <!-- 서비스 2: URL 단축기 연결 카드 & 버튼 -->
+        <div class="service-card glass-card" id="card-short">
+          <div class="card-icon-wrapper short-accent">
+            <i class="fa-solid fa-scissors"></i>
+          </div>
+          <h2 class="card-title">URL 단축기</h2>
+          <p class="card-desc">
+            OpenAPI를 활용하여 길고 복잡한 인터넷 주소를 깔끔하고 간결한 단축 링크로 변환합니다.
+          </p>
+          <ul class="card-features">
+            <li><i class="fa-solid fa-check"></i> 실시간 OpenAPI 단축 요청</li>
+            <li><i class="fa-solid fa-check"></i> 원클릭 클립보드 복사 및 알림</li>
+            <li><i class="fa-solid fa-check"></i> 단축 URL 즉시 QR 생성 연계</li>
+          </ul>
+          <!-- 요구사항 1, 3: [urlShort] 폴더 index.html 연결 버튼 -->
+          <a href="urlShort/index.html" class="btn btn-short" id="btn-goto-short">
+            <span>URL단축</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+
+      </div>
+
+      <!-- 빠른 기능 플로우 가이드 -->
+      <section class="workflow-section">
+        <h3 class="workflow-title">어떻게 작동하나요?</h3>
+        <div class="steps-container">
+          <div class="step-box glass-card">
+            <div class="step-num">01</div>
+            <h4>URL 입력</h4>
+            <p>변환할 링크 주소를 입력창에 붙여넣습니다.</p>
+          </div>
+          <div class="step-arrow"><i class="fa-solid fa-angle-right"></i></div>
+          <div class="step-box glass-card">
+            <div class="step-num">02</div>
+            <h4>변환 & 생성</h4>
+            <p>QR코드 생성 또는 OpenAPI 단축 링크를 요청합니다.</p>
+          </div>
+          <div class="step-arrow"><i class="fa-solid fa-angle-right"></i></div>
+          <div class="step-box glass-card">
+            <div class="step-num">03</div>
+            <h4>복사 & 공유</h4>
+            <p>단축 URL을 복사하거나 QR 이미지를 다운로드하여 공유합니다.</p>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- 푸터 -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <i class="fa-solid fa-bolt-lightning"></i> LinkStudio
+      </div>
+      <p class="footer-text">&copy; 2026 LinkStudio. QR Code & URL Shortener Platform.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

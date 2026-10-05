@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LinkStudio | 안전한 링크 이동</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #0b0f19;
+      color: #f8fafc;
+      font-family: -apple-system, BlinkMacSystemFont, "Pretendard", system-ui, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 1.5rem;
+    }
+    .card {
+      background: rgba(23, 30, 49, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 2.5rem 2rem;
+      max-width: 480px;
+      width: 100%;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    }
+    .spinner {
+      width: 45px;
+      height: 45px;
+      border: 3px solid rgba(99, 102, 241, 0.2);
+      border-top-color: #6366f1;
+      border-radius: 50%;
+      animation: spin 0.6s linear infinite;
+      margin: 0 auto 1.25rem auto;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    h2 { font-size: 1.3rem; margin-bottom: 0.5rem; color: #fff; }
+    p { color: #94a3b8; font-size: 0.9rem; line-height: 1.5; word-break: break-all; margin-bottom: 1.25rem; }
+    .btn {
+      display: inline-block;
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      color: #fff;
+      text-decoration: none;
+      padding: 0.7rem 1.4rem;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="spinner"></div>
+    <h2>목적지 페이지로 연결 중입니다</h2>
+    <p id="target-display">잠시만 기다려주세요...</p>
+    <a href="#" id="direct-link" class="btn">즉시 이동하기</a>
+  </div>
+
+  <script>
+    (function() {
+      const params = new URLSearchParams(window.location.search);
+      let target = params.get('to') || params.get('url') || params.get('u');
+      
+      if (!target && window.location.hash) {
+        const key = window.location.hash.replace('#', '');
+        try {
+          target = localStorage.getItem('short_' + key) || sessionStorage.getItem('short_' + key);
+        } catch(e) {}
+      }
+
+      if (target) {
+        try {
+          target = decodeURIComponent(target);
+          if (!/^https?:\/\//i.test(target)) target = 'https://' + target;
+          
+          document.getElementById('target-display').textContent = target;
+          document.getElementById('direct-link').href = target;
+          
+          // 0.05초 후 즉시 이동
+          setTimeout(function() {
+            window.location.replace(target);
+          }, 50);
+        } catch(e) {
+          document.getElementById('target-display').textContent = '잘못된 URL 형식입니다.';
+        }
+      } else {
+        document.getElementById('target-display').textContent = '이동할 대상 주소를 찾을 수 없습니다.';
+      }
+    })();
+  </script>
+</body>
+</html>

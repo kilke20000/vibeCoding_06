@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>URL 단축기 | QR & URL Hub</title>
+  <meta name="description" content="길고 복잡한 URL을 빠르고 깔끔한 단축 링크로 변환하세요.">
+  
+  <!-- Google Fonts & Font Awesome -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- 배경 인터랙티브 글로우 효과 -->
+  <div class="bg-glow"></div>
+
+  <!-- 상단 네비게이션 바 -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-brand">
+        <i class="fa-solid fa-bolt-lightning brand-icon"></i>
+        <span>LinkStudio</span>
+      </a>
+      <div class="nav-menu">
+        <a href="../index.html" class="nav-link"><i class="fa-solid fa-house"></i> 홈</a>
+        <a href="../url2qr/index.html" class="nav-link"><i class="fa-solid fa-qrcode"></i> QR코드</a>
+        <a href="index.html" class="nav-link active"><i class="fa-solid fa-link"></i> URL단축</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 메인 컨텐츠 영역 -->
+  <main class="main-wrapper">
+    <div class="content-card">
+      <div class="header-section">
+        <div class="badge"><i class="fa-solid fa-scissors"></i> URL Shortener Service</div>
+        <h1 class="page-title">스마트 URL 단축기</h1>
+        <p class="page-desc">긴 주소를 짧고 깔끔하게 줄여서 공유하세요. 오픈 API를 통해 실시간으로 단축 링크를 생성합니다.</p>
+      </div>
+
+      <!-- URL 단축 카드 폼 -->
+      <div class="shortener-card glass-card">
+        
+        <!-- 3-1: URL 입력창 & 단축하기 버튼 -->
+        <div class="form-group">
+          <label for="url-input" class="form-label">단축할 원본 URL 입력</label>
+          <div class="input-wrapper">
+            <div class="input-icon"><i class="fa-solid fa-link"></i></div>
+            <input 
+              type="url" 
+              id="url-input" 
+              placeholder="https://example.com/very-long-url-path..." 
+              autocomplete="off"
+              spellcheck="false"
+              required 
+            />
+            <!-- 3-2: 비어있을 시 disabled 상태 유지 -->
+            <button id="shorten-btn" class="btn btn-primary" disabled>
+              <i class="fa-solid fa-scissors"></i>
+              <span>단축하기</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- 3-1: 읽기 전용 출력 상자 & 3-4: 복사 버튼 -->
+        <div class="form-group result-group" id="result-container">
+          <div class="result-header">
+            <label for="result-output" class="form-label">단축된 URL 결과</label>
+            <span class="status-indicator" id="status-indicator">
+              <i class="fa-solid fa-circle-check"></i> 생성 완료
+            </span>
+          </div>
+          <div class="input-wrapper output-wrapper">
+            <div class="input-icon"><i class="fa-solid fa-shield-halved"></i></div>
+            <input 
+              type="text" 
+              id="result-output" 
+              readonly 
+              placeholder="단축하기 버튼을 누르면 여기에 단축 URL이 표시됩니다" 
+              aria-label="단축된 URL 결과 출력창"
+            />
+            <button id="copy-btn" class="btn btn-secondary copy-btn" disabled title="단축 URL 클립보드에 복사">
+              <i class="fa-regular fa-copy"></i>
+              <span>복사</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- 부가 액션 버튼 (단축 URL 열기 & QR코드 바로 만들기) -->
+        <div class="extra-actions" id="extra-actions" style="display: none;">
+          <a href="#" id="open-link-btn" target="_blank" rel="noopener noreferrer" class="action-chip">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i> 링크 열기
+          </a>
+          <a href="#" id="to-qr-btn" class="action-chip highlight">
+            <i class="fa-solid fa-qrcode"></i> 이 단축 링크로 QR코드 만들기
+          </a>
+        </div>
+
+      </div>
+
+      <!-- 최근 단축 기록 섹션 (LocalStorage 기반) -->
+      <div class="history-section glass-card" id="history-section" style="display: none;">
+        <div class="history-header">
+          <h3><i class="fa-solid fa-clock-rotate-left"></i> 최근 단축 기록</h3>
+          <button id="clear-history-btn" class="text-btn">기록 삭제</button>
+        </div>
+        <ul class="history-list" id="history-list">
+          <!-- JS 동적 렌더링 -->
+        </ul>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- 토스트 알림 메시지 컨테이너 -->
+  <div id="toast" class="toast" role="alert" aria-live="polite"></div>
+
+  <!-- 푸터 -->
+  <footer class="footer">
+    <p>&copy; 2026 LinkStudio. All rights reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

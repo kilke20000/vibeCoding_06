@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QR코드 생성기 | QR & URL Hub</title>
+  <meta name="description" content="URL을 간편하게 고화질 QR코드로 변환하고 JPG/PNG 이미지로 다운로드하세요.">
+  
+  <!-- Google Fonts & Font Awesome -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- 배경 인터랙티브 파티클/글로우 효과 -->
+  <div class="bg-glow"></div>
+
+  <!-- 상단 네비게이션 바 -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-brand">
+        <i class="fa-solid fa-bolt-lightning brand-icon"></i>
+        <span>LinkStudio</span>
+      </a>
+      <div class="nav-menu">
+        <a href="../index.html" class="nav-link"><i class="fa-solid fa-house"></i> 홈</a>
+        <a href="index.html" class="nav-link active"><i class="fa-solid fa-qrcode"></i> QR코드</a>
+        <a href="../urlShort/index.html" class="nav-link"><i class="fa-solid fa-link"></i> URL단축</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 메인 컨텐츠 영역 -->
+  <main class="main-wrapper">
+    <div class="content-card">
+      <div class="header-section">
+        <div class="badge"><i class="fa-solid fa-qrcode"></i> QR Code Generator</div>
+        <h1 class="page-title">스마트 QR코드 생성기</h1>
+        <p class="page-desc">변환할 웹사이트 주소나 텍스트를 입력하면 즉시 QR코드가 생성됩니다.</p>
+      </div>
+
+      <!-- QR코드 결과 표시 영역 -->
+      <div id="qr-container" class="qr-hidden">
+        <div class="qr-card glass-card">
+          <div id="qrcode" class="qr-box" title="클릭하면 다운로드됩니다"></div>
+          <p class="qr-hint"><i class="fa-solid fa-circle-down"></i> QR코드를 클릭하거나 아래 버튼으로 다운로드하세요</p>
+          <div class="qr-action-btns">
+            <button id="download-jpg-btn" class="btn btn-secondary"><i class="fa-solid fa-image"></i> JPG 다운로드</button>
+            <button id="download-png-btn" class="btn btn-secondary"><i class="fa-solid fa-file-arrow-down"></i> PNG 다운로드</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- URL 입력 폼 영역 -->
+      <div id="input-container" class="input-container center-pos">
+        <div class="input-group glass-card">
+          <div class="input-icon-box">
+            <i class="fa-solid fa-globe"></i>
+          </div>
+          <input 
+            type="url" 
+            id="url-input" 
+            placeholder="웹사이트 URL을 입력하세요 (예: https://example.com)" 
+            autocomplete="off"
+            spellcheck="false"
+            required 
+          />
+          <button id="generate-btn" class="btn btn-primary">
+            <span>생성하기</span>
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+          </button>
+        </div>
+        
+        <!-- 단축 URL 이동 퀵 안내 -->
+        <div class="quick-link-box">
+          <span>긴 URL을 먼저 줄이고 싶으신가요?</span>
+          <a href="../urlShort/index.html" class="text-link"><i class="fa-solid fa-scissors"></i> URL 단축기 바로가기</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- 토스트 알림 메시지 컨테이너 -->
+  <div id="toast" class="toast" role="alert" aria-live="polite"></div>
+
+  <!-- 푸터 -->
+  <footer class="footer">
+    <p>&copy; 2026 LinkStudio. All rights reserved.</p>
+  </footer>
+
+  <!-- QR Code 생성 라이브러리 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
